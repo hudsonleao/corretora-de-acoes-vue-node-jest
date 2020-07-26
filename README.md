@@ -48,4 +48,4 @@ npm run test
 ```
 npm run test
 ```
-##### Obs: para rodar o teste no frontend inicie o projeto backend, os testes utiliza suas rotas
+##### Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
