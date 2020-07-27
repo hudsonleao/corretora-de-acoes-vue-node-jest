@@ -1,5 +1,65 @@
 ## Corretora de ações com VueJS e NodeJS - Testes unitários com Jest
 
+### Instalação, execução e build: 
+
+Instalação das dependências:
+
+Dentro da pasta backend execute o comando:
+```
+npm i
+```
+Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
+
+Dentro da pasta frontend execute o comando:
+```
+npm i
+```
+Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
+
+
+#### Executar projeto
+
+Rodando o backend:
+
+Dentro da pasta backend execute o comando:
+```
+npm start
+```
+
+
+Dentro da pasta backend execute o comando:
+
+Rodando o frontend:
+```
+npm run serve
+```
+
+
+#### Realizar testes unitários:
+
+Testes no backend:
+
+Dentro da pasta backend execute o comando:
+```
+npm run test
+```
+
+
+Testes no frontend:
+
+Dentro da pasta frontend execute o comando:
+```
+npm run test
+```
+Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
+
+
+#### Build frontend:
+
+```
+npm run build
+```
+
 #### Frontend
 
 As funcionalidades:
@@ -136,64 +196,4 @@ Exemplo de uso:
 ```
 $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5.SA?purchasedAmount=100&purchasedAt=2016-05-31
 { "name": "USIM5.SA", "purchasedAmount": 100, "purchasedAt": "2016-05-31", "priceAtDate": 3.97, "lastPrice": 4.33, "capitalGains": 36.0 }
-```
-
-### Instalação, execução e build: 
-
-Instalação das dependências:
-
-Dentro da pasta backend execute o comando:
-```
-npm i
-```
-Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
-
-Dentro da pasta frontend execute o comando:
-```
-npm i
-```
-Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
-
-
-#### Executar projeto
-
-Rodando o backend:
-
-Dentro da pasta backend execute o comando:
-```
-npm start
-```
-
-
-Dentro da pasta backend execute o comando:
-
-Rodando o frontend:
-```
-npm run serve
-```
-
-
-#### Realizar testes unitários:
-
-Testes no backend:
-
-Dentro da pasta backend execute o comando:
-```
-npm run test
-```
-
-
-Testes no frontend:
-
-Dentro da pasta frontend execute o comando:
-```
-npm run test
-```
-Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
-
-
-#### Build frontend:
-
-```
-npm run build
 ```
