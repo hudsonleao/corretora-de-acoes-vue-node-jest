@@ -1,19 +1,19 @@
 ## Corretora de ações com VueJS e NodeJS - Testes unitários com Jest
 
-### Frontend
+Frontend
 
-##### As funcionalidades:
+As funcionalidades:
 
--Incluir ações no portifólio;
--Ver situação atual das ações (último preço e data e hora da atualização);
--Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
--Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
+- Incluir ações no portifólio;
+- Ver situação atual das ações (último preço e data e hora da atualização);
+- Ver histórico de preços de uma ação, podendo delimitar datas de início e fim;
+- Fazer projeção de ganhos de uma ação, determinando o número de ações compradas e a data de compra no passado.
 
-## Backend
+Backend
 
-### Endpoints
+Endpoints
 
-#### `/stocks/:stock_name/quote` - Retorna a cotação mais recente para a ação ####
+`/stocks/:stock_name/quote` - Retorna a cotação mais recente para a ação ####
 
 Entrada:
 
@@ -137,59 +137,59 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 ```
 
 
-### Instalação das dependências:
+Instalação das dependências:
 
-#### Dentro da pasta backend execute o comando:
+Dentro da pasta backend execute o comando:
 ```
 npm i
 ```
-#### Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
+Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
 
-#### Dentro da pasta frontend execute o comando:
+Dentro da pasta frontend execute o comando:
 ```
 npm i
 ```
-#### Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
+Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
 
 
-### Executar projeto
+Executar projeto
 
-#### Rodando o backend:
+Rodando o backend:
 
-##### Dentro da pasta backend execute o comando:
+Dentro da pasta backend execute o comando:
 ```
 npm start
 ```
 
 
-##### Dentro da pasta backend execute o comando:
+Dentro da pasta backend execute o comando:
 
-#### Rodando o frontend:
+Rodando o frontend:
 ```
 npm run serve
 ```
 
 
-### Realizar testes unitários:
+Realizar testes unitários:
 
-#### Testes no backend:
+Testes no backend:
 
-##### Dentro da pasta backend execute o comando:
+Dentro da pasta backend execute o comando:
 ```
 npm run test
 ```
 
 
-#### Testes no frontend:
+Testes no frontend:
 
-##### Dentro da pasta frontend execute o comando:
+Dentro da pasta frontend execute o comando:
 ```
 npm run test
 ```
-##### Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
+Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
 
 
-#### Build frontend:
+Build frontend:
 
 ```
 npm run build
