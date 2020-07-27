@@ -3,7 +3,54 @@
     <div id="secao">
       <h1 class="text-center">Opções de buscas:</h1>
     </div>
-    <!--Fim preço atual-->
+    <!--Inicio incluir ações no portifólio-->
+    <div id="secao">
+      <h3 class="text-center">Adicionar ações ao portfólio:</h3>
+      <div id="msgPortifolio" v-html="mensagemPortifolio"></div>
+      <div id="formulario" class="format">
+        <form id="formAcao" method="POST" action="/" v-on:submit.prevent="portifolio">
+          <div class="row">
+            <div class="col-sm-12">
+              <label for="inlineFormInput">Adicionar ação:</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="acao"
+                  name="acao"
+                  v-model="acao"
+                  required
+                  placeholder="Ex: PETR4.SA, VVAR3.SA, IBM, etc..."
+                />
+              </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <button id="btn-Adicionar" type="submit" class="btn btn-success float-right">
+                    <i class="fa fa-plus"></i> Adicionar
+                  </button>
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+            <div v-show="listaPortifolio.length > 0">
+            <div v-for="item in listaPortifolio" :key="item.pricedAt">
+                <div class="card text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">Valor atual: {{item.lastPrice}}</p>
+                    <p class="card-text">Ultima atualização: {{item.pricedAt[2]}}/{{item.pricedAt[1]}}/{{item.pricedAt[0]}}</p>
+                    <button id="btn-limpar-atual" type="button" class="btn btn-danger" v-on:click="excluirPortifolio(item.indice)">
+              <i class="fa fa-trash"></i> Remover
+            </button>
+            </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    <!--Fim incluir ações no portifólio -->
+    <!--Inicio preço atual-->
     <div id="secao">
       <h3 class="text-center">Consultar cotação atual de uma ação:</h3>
       <div id="msgAtual" v-html="mensagemAtual"></div>
@@ -318,6 +365,8 @@ export default {
   props: {},
   data() {
     return {
+      listaPortifolio: [],
+      mensagemPortifolio: "",
       registroAtual: { name: "", lastPrice: "", pricedAt: "" },
       acao: "",
       mensagemAtual: "",
@@ -337,9 +386,59 @@ export default {
       ganhos: false,
       registroGanhos: {},
       mensagemProjecaoGanhos: "",
+      existe: false,
     };
   },
   methods: {
+    portifolio() {
+      return this.$apiService
+        .getPrecoAtual(this.acao)
+        .then((response) => {
+          if (
+            response.erro ||
+            response.lastPrice == null ||
+            response.pricedAt == null
+          ) {
+            this.exibirMsgAlertPortifolio(
+              `Não foi possível encontrar a ação ${this.acao}.`,
+              "erro"
+            );
+            return false;
+          } else {
+            this.limparMsgAlertPortifolio();
+            for (let i = 0; i < this.listaPortifolio.length; i++) {
+              if(this.listaPortifolio[i].name == response.name){
+                this.existe = true
+              }
+            }
+            if(!this.existe){
+              this.existe = false
+              this.listaPortifolio.push({
+              name: response.name,
+              lastPrice: response.lastPrice,
+              pricedAt: response.pricedAt.split("-"),
+            });
+            for (let i = 0; i < this.listaPortifolio.length; i++) {
+              this.listaPortifolio[i].indice = i
+            }
+            } else {
+              this.existe = false
+              this.exibirMsgAlertPortifolio(
+            "Ação já cadastrada em seu portifólio.",
+            "erro"
+          );
+            }
+            return true;
+          }
+        })
+        .catch((error) => {
+          this.exibirMsgAlertPortifolio(
+            "Não foi possível realizar a busca da ação informada, por favor tente novamente mais tarde. ",
+            "erro"
+          );
+          return error;
+        });
+    },
     //consulta a api e retorna o preço atual da ação pesquisada
     precoAtual() {
       return this.$apiService
@@ -470,6 +569,19 @@ export default {
           return error;
         });
     },
+    exibirMsgAlertPortifolio(msg, tipo) {
+      let dados = "";
+      if (tipo == "sucesso") {
+        dados = `<div class='alert alert-success' role='alert'>
+                    <strong>${msg}</strong>
+                </div>`;
+      } else if (tipo == "erro") {
+        dados = `<div class='alert alert-danger' role='alert'>
+                    <strong>${msg}</strong>
+                </div>`;
+      }
+      this.mensagemPortifolio = dados;
+    },
     exibirMsgAlertAtual(msg, tipo) {
       let dados = "";
       if (tipo == "sucesso") {
@@ -522,6 +634,9 @@ export default {
       }
       this.mensagemProjecaoGanhos = dados;
     },
+    limparMsgAlertPortifolio() {
+      this.mensagemPortifolio = "";
+    },
     limparMsgAlertAtual() {
       this.mensagemAtual = "";
     },
@@ -545,6 +660,9 @@ export default {
     },
     limparGanhos() {
       this.ganhos = false;
+    },
+    excluirPortifolio(indice){
+     this.listaPortifolio.splice(indice, 1);
     },
     //testes
     testePrecoAtual() {
