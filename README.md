@@ -138,10 +138,7 @@ $ curl -H "Accept: application/json" http://coolfinancialservice.com/stock/USIM5
 { "name": "USIM5.SA", "purchasedAmount": 100, "purchasedAt": "2016-05-31", "priceAtDate": 3.97, "lastPrice": 4.33, "capitalGains": 36.0 }
 ```
 
-
 ### Instalação, execução e build: 
-
-
 
 Instalação das dependências:
 
@@ -158,7 +155,7 @@ npm i
 Após finalizar o processo haverá sido criado uma pasta com o nome de node_modules
 
 
-Executar projeto
+#### Executar projeto
 
 Rodando o backend:
 
@@ -176,7 +173,7 @@ npm run serve
 ```
 
 
-Realizar testes unitários:
+#### Realizar testes unitários:
 
 Testes no backend:
 
@@ -195,7 +192,7 @@ npm run test
 Obs: para rodar o teste no frontend inicie o projeto backend, os testes utilizam suas rotas
 
 
-Build frontend:
+#### Build frontend:
 
 ```
 npm run build
